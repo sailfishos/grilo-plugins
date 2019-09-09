@@ -51,13 +51,13 @@ Summary:    Grilo plugin - filesystem
 %description -n grilo-plugin-filesystem
 Grilo plugin - filesystem
 
-
-%package    -n grilo-plugin-jamendo
-Group:      Multimedia
-Summary:    Grilo plugin - jamendo
-
-%description -n grilo-plugin-jamendo
-Grilo plugin - jamendo
+#Doesn't build with gcc 8.3
+#%package    -n grilo-plugin-jamendo
+#Group:      Multimedia
+#Summary:    Grilo plugin - jamendo
+#
+#%description -n grilo-plugin-jamendo
+#Grilo plugin - jamendo
 
 
 %package    -n grilo-plugin-lastfm-albumart
@@ -196,7 +196,7 @@ echo "EXTRA_DIST = missing-gnome-doc" > gnome-doc-utils.make
 REQUIRED_AUTOMAKE_VERSION=1.8 USE_GNOME2_MACROS=1 USE_COMMON_DOC_BUILD=no NOCONFIGURE=1 \
 . gnome-autogen.sh
 
-%configure --disable-static --enable-filesystem --enable-jamendo --enable-flickr --enable-podcasts \
+%configure --disable-static --enable-filesystem --disable-jamendo --enable-flickr --enable-podcasts \
  --disable-bookmarks --enable-shoutcast --enable-metadata-store --enable-vimeo --enable-gravatar \
  --enable-tracker --enable-localmetadata --enable-youtube --disable-optical-media
 
@@ -218,10 +218,10 @@ rm -rf $RPM_BUILD_ROOT/%{_datadir}/locale
 %{_libdir}/grilo-0.2/libgrlfilesystem.so
 %{_libdir}/grilo-0.2/grl-filesystem.xml
 
-%files -n grilo-plugin-jamendo
-%defattr(-,root,root,-)
-%{_libdir}/grilo-0.2/libgrljamendo.so
-%{_libdir}/grilo-0.2/grl-jamendo.xml
+#%files -n grilo-plugin-jamendo
+#%defattr(-,root,root,-)
+#%{_libdir}/grilo-0.2/libgrljamendo.so
+#%{_libdir}/grilo-0.2/grl-jamendo.xml
 
 %files -n grilo-plugin-flickr
 %defattr(-,root,root,-)
