@@ -7,9 +7,12 @@ License:    LGPLv2.1
 URL:        https://live.gnome.org/Grilo
 Source0:    http://ftp.gnome.org/pub/GNOME/sources/grilo-plugins/0.2/%{name}-%{version}.tar.xz
 Patch0:     disable-doc.patch
+Patch1:     Add-trackersparql20-to-the-list-to-check.patch
+Patch2:     tracker-Use-standard-Sparql11-syntax.patch
+Patch3:     tracker-Use-the-correct-property-to-retrieve-album-t.patch
 BuildRequires:  pkgconfig(grilo-0.2)
 BuildRequires:  pkgconfig(grilo-net-0.2)
-BuildRequires:  pkgconfig(tracker-sparql-1.0)
+BuildRequires:  pkgconfig(tracker-sparql-2.0)
 BuildRequires:  pkgconfig(libgdata)
 BuildRequires:  pkgconfig(libquvi)
 BuildRequires:  pkgconfig(sqlite3)
@@ -187,8 +190,7 @@ A Grilo plugin that gets a list of subtitles for a video
 
 
 %prep
-%setup -q -n %{name}-%{version}/%{name}
-%patch0 -p1
+%autosetup -p1 -n %{name}-%{version}/%{name}
 
 %build
 echo "EXTRA_DIST = missing-gtk-doc" > gtk-doc.make

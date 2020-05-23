@@ -1,0 +1,55 @@
+From 13a3ec6d43a9da6488554facfbbad7c330abbcce Sat, 23 May 2020 19:44:59 +0200
+From: Carlos Garnacho <carlosg@gnome.org>
+Date: Tue, 22 Aug 2017 11:53:21 +0200
+Subject: [PATCH] tracker: Use standard Sparql1.1 syntax
+
+
+The "AS var" syntax was non-standard, the Sparql1.1 spec defines this
+syntax as "AS ?var", which Tracker 1.x has also accepted for a very long
+time.
+
+Tracker 2.x is dropping the non-standard syntax, so switch the Tracker
+plugin to using the Sparql1.1 syntax, which shall work with Tracker 1.x
+and 2.x.
+
+https://bugzilla.gnome.org/show_bug.cgi?id=786602
+
+diff --git a/src/tracker/grl-tracker-source-api.c b/src/tracker/grl-tracker-source-api.c
+index 175e8f8..8fcfd89 100644
+--- a/src/tracker/grl-tracker-source-api.c
++++ b/src/tracker/grl-tracker-source-api.c
+@@ -759,9 +759,9 @@
+  * <informalexample>
+  *   <programlisting>
+  *     SELECT rdf:type(?song)
+- *            ?song            AS id
+- *            nie:title(?song) AS title
+- *            nie:url(?song)   AS url
++ *            ?song            AS ?id
++ *            nie:title(?song) AS ?title
++ *            nie:url(?song)   AS ?url
+  *     WHERE { ?song a nmm:MusicPiece }
+  *   </programlisting>
+  * </informalexample>
+diff --git a/src/tracker/grl-tracker-utils.c b/src/tracker/grl-tracker-utils.c
+index 3feeab7..1a2b3f6 100644
+--- a/src/tracker/grl-tracker-utils.c
++++ b/src/tracker/grl-tracker-utils.c
+@@ -404,7 +404,7 @@
+ 
+   assoc_list = get_mapping_from_grl (grl_metadata_key_tracker_urn);
+   assoc = (tracker_grl_sparql_t *) assoc_list->data;
+-  g_string_append_printf (gstr, "%s AS %s ",
++  g_string_append_printf (gstr, "%s AS ?%s ",
+                           assoc->sparql_key_attr_call,
+                           assoc->sparql_key_name);
+ 
+@@ -413,7 +413,7 @@
+     while (assoc_list != NULL) {
+       assoc = (tracker_grl_sparql_t *) assoc_list->data;
+       if (assoc != NULL) {
+-        g_string_append_printf (gstr, "%s AS %s ",
++        g_string_append_printf (gstr, "%s AS ?%s ",
+                                 assoc->sparql_key_attr_call,
+                                 assoc->sparql_key_name);
+       }

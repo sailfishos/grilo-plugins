@@ -1,0 +1,22 @@
+From 05d41d4d144af64ddee40c074827eb34c0399d22 Sat, 23 May 2020 19:46:31 +0200
+From: Jean Felder <jfelder@src.gnome.org>
+Date: Sun, 1 Sep 2019 14:15:08 +0200
+Subject: [PATCH] tracker: Use the correct property to retrieve album title
+
+
+nmm:albumTitle is deprecated since Tracker 0.9.28. nie:title is only
+used now.
+
+diff --git a/src/tracker/grl-tracker-utils.c b/src/tracker/grl-tracker-utils.c
+index 1a2b3f6..4129577 100644
+--- a/src/tracker/grl-tracker-utils.c
++++ b/src/tracker/grl-tracker-utils.c
+@@ -190,7 +190,7 @@
+ 
+   insert_key_mapping (GRL_METADATA_KEY_ALBUM,
+                       NULL,
+-                      "nmm:albumTitle(nmm:musicAlbum(?urn))",
++                      "nie:title(nmm:musicAlbum(?urn))",
+                       "audio");
+ 
+   insert_key_mapping (GRL_METADATA_KEY_ARTIST,
