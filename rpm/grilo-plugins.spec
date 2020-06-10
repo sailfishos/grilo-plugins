@@ -79,14 +79,6 @@ Summary:    Grilo plugin - podcasts
 %description -n grilo-plugin-podcasts
 Grilo plugin - podcasts
 
-# disabled due to missing gom packaging
-%package    -n grilo-plugin-bookmarks
-Summary:    Grilo plugin - bookmarks. Obsolete.
-
-%description -n grilo-plugin-bookmarks
-Grilo plugin - bookmarks. Non-functional.
-
-
 %package    -n grilo-plugin-shoutcast
 Summary:    Grilo plugin - shoutcast
 
@@ -183,7 +175,7 @@ rm -rf %{buildroot}
 rm -rf $RPM_BUILD_ROOT/%{_datadir}/gnome/help/
 rm -rf $RPM_BUILD_ROOT/%{_datadir}/locale
 # don't think we have any use for .pc file containing only the version
-rm -rf $RPM_BUILD_ROOT/usr/lib/pkgconfig/grilo-plugins-0.3.pc
+rm -rf $RPM_BUILD_ROOT%{_libdir}/pkgconfig/grilo-plugins-0.3.pc
 
 %files -n grilo-plugin-youtube
 %defattr(-,root,root,-)
@@ -204,10 +196,6 @@ rm -rf $RPM_BUILD_ROOT/usr/lib/pkgconfig/grilo-plugins-0.3.pc
 %files -n grilo-plugin-podcasts
 %defattr(-,root,root,-)
 %{_libdir}/grilo-0.3/libgrlpodcasts.so
-
-#%files -n grilo-plugin-bookmarks
-#%defattr(-,root,root,-)
-#%{_libdir}/grilo-0.3/libgrlbookmarks.so
 
 %files -n grilo-plugin-shoutcast
 %defattr(-,root,root,-)
