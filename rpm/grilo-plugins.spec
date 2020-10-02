@@ -1,28 +1,33 @@
 Name:       grilo-plugins
-Summary:    Grilo plugins
-Version:    0.3.11
+Summary:    Plugins for the Grilo framework
+Version:    0.3.12
 Release:    1
-License:    LGPLv2.1
-URL:        https://live.gnome.org/Grilo
-Source0:    http://ftp.gnome.org/pub/GNOME/sources/grilo-plugins/0.3/%{name}-%{version}.tar.xz
-BuildRequires:  pkgconfig(grilo-0.3)
-BuildRequires:  pkgconfig(grilo-net-0.3)
-BuildRequires:  pkgconfig(tracker-sparql-2.0)
-BuildRequires:  pkgconfig(libgdata)
-BuildRequires:  pkgconfig(libquvi)
-BuildRequires:  pkgconfig(sqlite3)
-BuildRequires:  pkgconfig(gmime-2.6)
-BuildRequires:  pkgconfig(libgcrypt)
-BuildRequires:  pkgconfig(rest-0.7)
-BuildRequires:  pkgconfig(totem-plparser)
-BuildRequires:  pkgconfig(libmediaart-2.0)
-BuildRequires:  pkgconfig(libxml-2.0)
-BuildRequires:  meson
-BuildRequires:  ninja
-BuildRequires:  lua
+License:    LGPLv2+
+URL:        https://wiki.gnome.org/Projects/Grilo
+Source0:    %{name}-%{version}.tar.bz2
+Patch1:     0001-Disable-building-help-files.patch
+BuildRequires:  meson >= 0.37.0
+BuildRequires:  lua >= 5.3.0
 BuildRequires:  gettext
-
-Patch1: 0001-Disable-building-help-files.patch
+BuildRequires:  pkgconfig(grilo-0.3) >= 0.3.8
+BuildRequires:  pkgconfig(grilo-net-0.3) >= 0.3.0
+BuildRequires:  pkgconfig(grilo-pls-0.3) >= 0.3.0
+BuildRequires:  pkgconfig(gio-2.0) >= 2.44
+BuildRequires:  pkgconfig(gio-unix-2.0) >= 2.44
+BuildRequires:  pkgconfig(glib-2.0) >= 2.44
+BuildRequires:  pkgconfig(gmodule-2.0) >= 2.44
+BuildRequires:  pkgconfig(gobject-2.0) >= 2.44
+BuildRequires:  pkgconfig(libxml-2.0)
+BuildRequires:  pkgconfig(libarchive)
+BuildRequires:  pkgconfig(libmediaart-2.0)
+BuildRequires:  pkgconfig(libsoup-2.4)
+BuildRequires:  pkgconfig(rest-0.7)
+BuildRequires:  pkgconfig(sqlite3)
+BuildRequires:  pkgconfig(libgdata) >= 0.9.1
+BuildRequires:  pkgconfig(totem-plparser) >= 3.4.1
+BuildRequires:  pkgconfig(tracker-sparql-2.0) >= 2.3.0
+BuildRequires:  pkgconfig(json-glib-1.0)
+BuildRequires:  pkgconfig(oauth)
 
 %description
 Grilo is a framework focused on making media discovery and browsing
@@ -39,143 +44,140 @@ More precisely, Grilo provides:
 This package contains the set of plugins officially distributed with
 Grilo.
 
-%package    -n grilo-plugin-youtube
-Summary:    Grilo plugin - youtube
+%package -n grilo-plugin-youtube
+Summary:  Grilo plugin - YouTube
+Requires: %{name} = %{version}-%{release}
 
 %description -n grilo-plugin-youtube
-Grilo plugin - youtube
+A Grilo plugin for YouTube.
 
-
-%package    -n grilo-plugin-filesystem
-Summary:    Grilo plugin - filesystem
+%package -n grilo-plugin-filesystem
+Summary:  Grilo plugin - filesystem
+Requires: %{name} = %{version}-%{release}
 
 %description -n grilo-plugin-filesystem
-Grilo plugin - filesystem
+Grilo plugin - filesystem.
 
-%package    -n grilo-plugin-jamendo
-Summary:    Grilo plugin - jamendo
-#
+%package -n grilo-plugin-jamendo
+Summary:  Grilo plugin - Jamendo
+Requires: %{name} = %{version}-%{release}
+
 %description -n grilo-plugin-jamendo
-Grilo plugin - jamendo
+A Grilo plugin for Jamendo.
 
-
-%package    -n grilo-plugin-lastfm-albumart
-Summary:    Grilo plugin - lastfm-albumart (obsolete)
-
-%description -n grilo-plugin-lastfm-albumart
-Grilo plugin - lastfm-albumart. Obsolete and non-functional.
-
-
-%package    -n grilo-plugin-flickr
-Summary:    Grilo plugin - flickr
+%package -n grilo-plugin-flickr
+Summary:  Grilo plugin - Flickr
+Requires: %{name} = %{version}-%{release}
 
 %description -n grilo-plugin-flickr
-Grilo plugin - flickr
+A Grilo plugin for Flickr.
 
-
-%package    -n grilo-plugin-podcasts
-Summary:    Grilo plugin - podcasts
+%package -n grilo-plugin-podcasts
+Summary:  Grilo plugin - podcasts
+Requires: %{name} = %{version}-%{release}
 
 %description -n grilo-plugin-podcasts
-Grilo plugin - podcasts
+A Grilo plugin for podcasts.
 
-%package    -n grilo-plugin-shoutcast
-Summary:    Grilo plugin - shoutcast
+%package -n grilo-plugin-shoutcast
+Summary:  Grilo plugin - Shoutcast
+Requires: %{name} = %{version}-%{release}
 
 %description -n grilo-plugin-shoutcast
-Grilo plugin - shoutcast
+A Grilo plugin for Shoutcast.
 
-
-%package    -n grilo-plugin-apple-trailers
-Summary:    Grilo plugin - apple-trailers (obsolete)
-
-%description -n grilo-plugin-apple-trailers
-Grilo plugin - apple-trailers. Obsolete and non-functional.
-
-
-%package    -n grilo-plugin-metadata-store
-Summary:    Grilo plugin - metadata-store
+%package -n grilo-plugin-metadata-store
+Summary:  Grilo plugin - metadata store
+Requires: %{name} = %{version}-%{release}
 
 %description -n grilo-plugin-metadata-store
-Grilo plugin - metadata-store
+A Grilo plugin for metadata store.
 
-
-%package    -n grilo-plugin-vimeo
-Summary:    Grilo plugin - vimeo
+%package -n grilo-plugin-vimeo
+Summary:  Grilo plugin - Vimeo
+Requires: %{name} = %{version}-%{release}
 
 %description -n grilo-plugin-vimeo
-Grilo plugin - vimeo
+A Grilo plugin for Vimeo.
 
-
-%package    -n grilo-plugin-gravatar
-Summary:    Grilo plugin - gravatar
+%package -n grilo-plugin-gravatar
+Summary:  Grilo plugin - Gravatar
+Requires: %{name} = %{version}-%{release}
 
 %description -n grilo-plugin-gravatar
-Grilo plugin - gravatar
+A Grilo plugin for Gravatar.
 
-
-%package    -n grilo-plugin-tracker
-Summary:    Grilo plugin - tracker
+%package -n grilo-plugin-tracker
+Summary:  Grilo plugin - Tracker
+Requires: %{name} = %{version}-%{release}
 
 %description -n grilo-plugin-tracker
-Grilo plugin - tracker
+A Grilo plugin for Tracker.
 
-
-%package    -n grilo-plugin-bliptv
-Summary:    Grilo plugin - bliptv (obsolete)
-
-%description -n grilo-plugin-bliptv
-Grilo plugin - bliptv. Obsolete and non-functional.
-
-
-%package    -n grilo-plugin-localmetadata
-Summary:    Grilo plugin - localmetadata
+%package -n grilo-plugin-localmetadata
+Summary:  Grilo plugin - local metadata
+Requires: %{name} = %{version}-%{release}
 
 %description -n grilo-plugin-localmetadata
-Grilo plugin - localmetadata
+A Grilo plugin for local metadata.
 
-
-%package    -n grilo-plugin-raitv
-Summary:    Grilo plugin - Rai.tv
+%package -n grilo-plugin-raitv
+Summary:  Grilo plugin - Rai.tv
+Requires: %{name} = %{version}-%{release}
 
 %description -n grilo-plugin-raitv
-Grilo plugin - Rai.tv
+Grilo plugin - Rai.tv.
 
-
-%package    -n grilo-plugin-magnatune
-Summary:    Grilo plugin - Magnatune
+%package -n grilo-plugin-magnatune
+Summary:  Grilo plugin - Magnatune
+Requires: %{name} = %{version}-%{release}
 
 %description -n grilo-plugin-magnatune
-Grilo plugin - Magnatune
+Grilo plugin - Magnatune.
 
-%package    -n grilo-plugin-dleyna
-Summary:    Grilo plugin - dLeyna
+%package -n grilo-plugin-dleyna
+Summary:  Grilo plugin - dLeyna
+Requires: %{name} = %{version}-%{release}
 
 %description -n grilo-plugin-dleyna
-A Grilo plugin for browsing DLNA servers
+A Grilo plugin for browsing UPnP/DLNA servers.
 
-%package    -n grilo-plugin-opensubtitles
-Summary:    Grilo plugin - OpenSubtitles Provider
+%package -n grilo-plugin-opensubtitles
+Summary:  Grilo plugin - OpenSubtitles Provider
+Requires: %{name} = %{version}-%{release}
 
 %description -n grilo-plugin-opensubtitles
-A Grilo plugin that gets a list of subtitles for a video
+A Grilo plugin that gets a list of subtitles for a video.
 
+%package -n grilo-plugin-tmdb
+Summary:  Grilo plugin - TMDb
+Requires: %{name} = %{version}-%{release}
+
+%description -n grilo-plugin-tmdb
+A Grilo plugin that retrieves information about movies from the TMDb online
+service.
 
 %prep
 %autosetup -p1 -n %{name}-%{version}/%{name}
 
 %build
-
-%meson -Denable-bookmarks=no -Denable-optical-media=no \
-       -Denable-lua-factory=no -Denable-chromaprint=no
+%meson \
+  -Denable-bookmarks=no \
+  -Denable-optical-media=no \
+  -Denable-lua-factory=no \
+  -Denable-chromaprint=no
+%meson_build
 
 %install
-rm -rf %{buildroot}
 %meson_install
-rm -rf $RPM_BUILD_ROOT/%{_datadir}/gnome/help/
-rm -rf $RPM_BUILD_ROOT/%{_datadir}/locale
 # don't think we have any use for .pc file containing only the version
 rm -rf $RPM_BUILD_ROOT%{_libdir}/pkgconfig/grilo-plugins-0.3.pc
+
+%find_lang %{name}
+
+%files -f %{name}.lang
+%defattr(-,root,root,-)
+%license COPYING
 
 %files -n grilo-plugin-youtube
 %defattr(-,root,root,-)
@@ -236,3 +238,7 @@ rm -rf $RPM_BUILD_ROOT%{_libdir}/pkgconfig/grilo-plugins-0.3.pc
 %files -n grilo-plugin-opensubtitles
 %defattr(-,root,root,-)
 %{_libdir}/grilo-0.3/libgrlopensubtitles.so
+
+%files -n grilo-plugin-tmdb
+%defattr(-,root,root,-)
+%{_libdir}/grilo-0.3/libgrltmdb.so
