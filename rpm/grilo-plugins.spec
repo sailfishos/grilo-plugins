@@ -1,11 +1,10 @@
 Name:       grilo-plugins
 Summary:    Plugins for the Grilo framework
-Version:    0.3.12
+Version:    0.3.13
 Release:    1
 License:    LGPLv2+
 URL:        https://wiki.gnome.org/Projects/Grilo
 Source0:    %{name}-%{version}.tar.bz2
-Patch1:     0001-Disable-building-help-files.patch
 BuildRequires:  meson >= 0.37.0
 BuildRequires:  lua >= 5.3.0
 BuildRequires:  gettext
@@ -58,13 +57,6 @@ Requires: %{name} = %{version}-%{release}
 %description -n grilo-plugin-filesystem
 Grilo plugin - filesystem.
 
-%package -n grilo-plugin-jamendo
-Summary:  Grilo plugin - Jamendo
-Requires: %{name} = %{version}-%{release}
-
-%description -n grilo-plugin-jamendo
-A Grilo plugin for Jamendo.
-
 %package -n grilo-plugin-flickr
 Summary:  Grilo plugin - Flickr
 Requires: %{name} = %{version}-%{release}
@@ -92,13 +84,6 @@ Requires: %{name} = %{version}-%{release}
 
 %description -n grilo-plugin-metadata-store
 A Grilo plugin for metadata store.
-
-%package -n grilo-plugin-vimeo
-Summary:  Grilo plugin - Vimeo
-Requires: %{name} = %{version}-%{release}
-
-%description -n grilo-plugin-vimeo
-A Grilo plugin for Vimeo.
 
 %package -n grilo-plugin-gravatar
 Summary:  Grilo plugin - Gravatar
@@ -162,10 +147,12 @@ service.
 
 %build
 %meson \
+  -Dhelp=no \
   -Denable-bookmarks=no \
   -Denable-optical-media=no \
   -Denable-lua-factory=no \
   -Denable-chromaprint=no
+
 %meson_build
 
 %install
@@ -187,10 +174,6 @@ rm -rf $RPM_BUILD_ROOT%{_libdir}/pkgconfig/grilo-plugins-0.3.pc
 %defattr(-,root,root,-)
 %{_libdir}/grilo-0.3/libgrlfilesystem.so
 
-%files -n grilo-plugin-jamendo
-%defattr(-,root,root,-)
-%{_libdir}/grilo-0.3/libgrljamendo.so
-
 %files -n grilo-plugin-flickr
 %defattr(-,root,root,-)
 %{_libdir}/grilo-0.3/libgrlflickr.so
@@ -206,10 +189,6 @@ rm -rf $RPM_BUILD_ROOT%{_libdir}/pkgconfig/grilo-plugins-0.3.pc
 %files -n grilo-plugin-metadata-store
 %defattr(-,root,root,-)
 %{_libdir}/grilo-0.3/libgrlmetadatastore.so
-
-%files -n grilo-plugin-vimeo
-%defattr(-,root,root,-)
-%{_libdir}/grilo-0.3/libgrlvimeo.so
 
 %files -n grilo-plugin-gravatar
 %defattr(-,root,root,-)
