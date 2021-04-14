@@ -24,7 +24,7 @@ BuildRequires:  pkgconfig(rest-0.7)
 BuildRequires:  pkgconfig(sqlite3)
 BuildRequires:  pkgconfig(libgdata) >= 0.9.1
 BuildRequires:  pkgconfig(totem-plparser) >= 3.4.1
-BuildRequires:  pkgconfig(tracker-sparql-2.0) >= 2.3.0
+BuildRequires:  pkgconfig(tracker-sparql-3.0)
 BuildRequires:  pkgconfig(json-glib-1.0)
 BuildRequires:  pkgconfig(oauth)
 
@@ -196,7 +196,7 @@ rm -rf $RPM_BUILD_ROOT%{_libdir}/pkgconfig/grilo-plugins-0.3.pc
 
 %files -n grilo-plugin-tracker
 %defattr(-,root,root,-)
-%{_libdir}/grilo-0.3/libgrltracker.so
+%{_libdir}/grilo-0.3/libgrltracker3.so
 
 %files -n grilo-plugin-localmetadata
 %defattr(-,root,root,-)
