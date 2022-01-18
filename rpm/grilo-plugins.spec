@@ -1,6 +1,6 @@
 Name:       grilo-plugins
 Summary:    Plugins for the Grilo framework
-Version:    0.3.13
+Version:    0.3.14
 Release:    1
 License:    LGPLv2+
 URL:        https://wiki.gnome.org/Projects/Grilo
@@ -151,7 +151,8 @@ service.
   -Denable-bookmarks=no \
   -Denable-optical-media=no \
   -Denable-lua-factory=no \
-  -Denable-chromaprint=no
+  -Denable-chromaprint=no \
+  -Dgoa=disabled
 
 %meson_build
 
