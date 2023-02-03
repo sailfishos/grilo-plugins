@@ -1,6 +1,6 @@
 Name:       grilo-plugins
 Summary:    Plugins for the Grilo framework
-Version:    0.3.14
+Version:    0.3.15
 Release:    1
 License:    LGPLv2+
 URL:        https://wiki.gnome.org/Projects/Grilo
@@ -20,9 +20,7 @@ BuildRequires:  pkgconfig(libxml-2.0)
 BuildRequires:  pkgconfig(libarchive)
 BuildRequires:  pkgconfig(libmediaart-2.0)
 BuildRequires:  pkgconfig(libsoup-2.4)
-BuildRequires:  pkgconfig(rest-0.7)
 BuildRequires:  pkgconfig(sqlite3)
-BuildRequires:  pkgconfig(libgdata) >= 0.9.1
 BuildRequires:  pkgconfig(totem-plparser) >= 3.4.1
 BuildRequires:  pkgconfig(tracker-sparql-3.0)
 BuildRequires:  pkgconfig(json-glib-1.0)
@@ -42,13 +40,6 @@ More precisely, Grilo provides:
   various kinds.
 This package contains the set of plugins officially distributed with
 Grilo.
-
-%package -n grilo-plugin-youtube
-Summary:  Grilo plugin - YouTube
-Requires: %{name} = %{version}-%{release}
-
-%description -n grilo-plugin-youtube
-A Grilo plugin for YouTube.
 
 %package -n grilo-plugin-filesystem
 Summary:  Grilo plugin - filesystem
@@ -166,10 +157,6 @@ rm -rf $RPM_BUILD_ROOT%{_libdir}/pkgconfig/grilo-plugins-0.3.pc
 %files -f %{name}.lang
 %defattr(-,root,root,-)
 %license COPYING
-
-%files -n grilo-plugin-youtube
-%defattr(-,root,root,-)
-%{_libdir}/grilo-0.3/libgrlyoutube.so
 
 %files -n grilo-plugin-filesystem
 %defattr(-,root,root,-)
